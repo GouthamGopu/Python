@@ -2,6 +2,7 @@ import speech_recognition as sr
 import webbrowser
 import pyttsx3
 import musicLibrary
+import urllib.parse
 
 
 engine = pyttsx3.init()
@@ -39,6 +40,16 @@ def proccessCommand(c):
     link=musicLibrary.music[song]
     speak(f"Playing {song}")
     webbrowser.open(link)
+  elif c.lower().startswith("search about"):
+    query = c.lower().replace("search about", "").strip()
+    encoded_query = urllib.parse.quote(query)
+    url = f"https://www.google.com/search?q={encoded_query}"
+    webbrowser.open(url)
+  elif c.lower().startswith("search"):
+    query = c.lower().replace("search", "").strip()
+    encoded_query = urllib.parse.quote(query)
+    url = f"https://www.google.com/search?q={encoded_query}"
+    webbrowser.open(url)
 
     
 
@@ -53,7 +64,6 @@ if __name__ == "__main__":
           audio = r.listen(source)
         print("Recognizing...")
         word=r.recognize_google(audio)
-        print(word)
         proccessCommand(word)
         if(word.lower() == "jarvis"):
            speak("Hii sir,how can i help you")
