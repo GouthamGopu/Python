@@ -22,6 +22,9 @@ def proccessCommand(c):
   elif "open github" in c.lower():
     speak("Opening github")
     webbrowser.open("https://github.com")
+  elif "open gpt" in c.lower():
+    speak("Opening gpt")
+    webbrowser.open("https://chatgpt.com")
   elif "open facebook" in c.lower():
     speak("Opening facebook")
     webbrowser.open("https://facebook.com")
